@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="score" style="color: black; background: linear-gradient(90deg, red 0%, orange 16.66%, yellow 33.33%, green 50%, blue 66.66%, indigo 83.33%, violet 100%);">
+    <div class="score" style="color: black; background: white">
       SCORE: <pre>{{ score }}</pre>
     </div>
     <flashcard :front="question" :back="answer"></flashcard>
