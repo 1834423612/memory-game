@@ -22,3 +22,15 @@ logs
 .env
 .env.*
 !.env.example
+
+
+# Git
+.git
+.gitignore
+.gitattributes
+.gitmodules
+.gitkeep
+
+# Package manager
+package-lock.json
+yarn.lock
