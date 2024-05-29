@@ -5,6 +5,8 @@ import App from './App.vue'
 import store from './store'
 import questions from './data/questions' // Manually loading the questions
 
+/* eslint-disable */
+
 Vue.config.productionTip = false
 Vue.use(Vuex)
 

@@ -69,6 +69,15 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #80a8d3, #39d8ff, #00c9a7, #92d5c6, #ebf5ee);
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -77,6 +86,11 @@ export default {
   /* color: #2c3e50; */
   color: black;
   margin-top: 60px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 #score {

@@ -9,6 +9,7 @@
     "push": "yarn build && yarn run gh-pages -d dist"
   },
   "dependencies": {
+    "eslint-loader": "2.1.2",
     "gh-pages": "^1.1.0",
     "vue": "^2.5.13",
     "vuex": "^3.0.1"

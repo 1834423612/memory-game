@@ -16,13 +16,15 @@ export default {
   justify-content: center;
   align-items: center;
   height: 50%;
+  padding-bottom: 1rem;
   background-color: pink;
   flex-direction: column;
-
   /* make some space between the container and the bottom */
   margin-bottom: 20px;
 
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  width: 80%;
 }
 
 </style>
