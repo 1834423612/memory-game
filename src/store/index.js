@@ -25,7 +25,7 @@ export default new Vuex.Store({
   mutations: {
     // The changes to the state that we'll be making
     setUnanswered (state, questions) {
-      // To intitially load the questions from the JSON file you made earlier
+      // To initially load the questions from the JSON file you made earlier
       state.unansweredQuestions = questions
     },
     pushUnanswered (state, question) {

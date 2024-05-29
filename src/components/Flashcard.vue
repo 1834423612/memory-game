@@ -49,7 +49,7 @@ export default {
     },
     colorBack: {
       type: String,
-      default: '#2ecc71'
+      default: '#2ecc71' // green card
     },
     footerFront: {
       type: String,
