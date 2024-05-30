@@ -6,12 +6,18 @@
     <container>
       <flashcard :front="question" :back="answer"></flashcard>
 
-      <div v-if="this.$store.state.cardFlipped">
-        <button @click="correctp1">Player 1</button>
-        <button @click="wrong">Both Wrong Or Tie</button>
-        <button @click="correctp2">Player 2</button>
-      </div>
     </container>
+    <!-- Choice Buttons -->
+    <div v-if="this.$store.state.cardFlipped" class="ChoiceButtons">
+      <!-- <Button type="default" effect="reverse" size="middle" :width="120" :height="40" :borderRadius="4"
+        :disabled="false" :center="false" @click="onClick">
+        Test Button
+      </Button> -->
+
+      <button @click="correctp1">Player 1</button>
+      <button @click="wrong">Both Wrong Or Tie</button>
+      <button @click="correctp2">Player 2</button>
+    </div>
 
     <DirectionCard></DirectionCard>
   </div>
@@ -22,6 +28,9 @@ import score from './components/score.vue'
 import flashcard from './components/Flashcard.vue'
 import container from './components/container.vue'
 import DirectionCard from './components/direction-card.vue'
+
+// import Button from './components/button'
+
 export default {
   components: {
     score,
@@ -68,15 +77,14 @@ export default {
 }
 </script>
 
-<style>
-body {
+<style scoped>
+/* body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #80a8d3, #39d8ff, #00c9a7, #92d5c6, #ebf5ee);
   margin: 0;
   padding: 0;
-}
+} */
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -95,5 +103,18 @@ body {
 
 #score {
   font-size: 24px;
+}
+
+.ChoiceButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  background-color: chocolate;
+  width: 60%;
+  height: 40%;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
 }
 </style>

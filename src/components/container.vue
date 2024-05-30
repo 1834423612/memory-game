@@ -16,6 +16,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 50%;
+  border-radius: 15px;
   padding-bottom: 1rem;
   background-color: pink;
   flex-direction: column;
