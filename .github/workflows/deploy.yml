@@ -36,9 +36,17 @@ jobs:
         mkdir temp-deploy
         cp -r dist/* temp-deploy/
 
-        echo "Switching to webpage branch"
+        echo "Fetching all branches"
         git fetch origin
-        git checkout -B webpage origin/webpage
+
+        echo "Checking if webpage branch exists"
+        if git show-ref --verify --quiet refs/heads/webpage; then
+          echo "webpage branch exists, checking out"
+          git checkout webpage
+        else
+          echo "webpage branch does not exist, creating new branch"
+          git checkout -b webpage
+        fi
 
         echo "Copying build files to webpage branch"
         cp -r temp-deploy/* .
