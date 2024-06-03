@@ -26,7 +26,6 @@ logs
 
 # Git
 .git
-.gitignore
 .gitattributes
 .gitmodules
 .gitkeep
@@ -34,3 +33,7 @@ logs
 # Package manager
 package-lock.json
 yarn.lock
+pnpm-lock.yaml
+
+# deployment
+temp-deploy

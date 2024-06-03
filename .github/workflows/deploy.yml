@@ -39,14 +39,15 @@ jobs:
         echo "Fetching all branches"
         git fetch origin
 
-        echo "Checking if webpage branch exists"
+        echo "Checking out webpage branch"
         if git show-ref --verify --quiet refs/heads/webpage; then
-          echo "webpage branch exists, checking out"
           git checkout webpage
         else
-          echo "webpage branch does not exist, creating new branch"
-          git checkout -b webpage
+          git checkout --orphan webpage
         fi
+
+        echo "Cleaning old files"
+        git rm -rf .
 
         echo "Copying build files to webpage branch"
         cp -r temp-deploy/* .
