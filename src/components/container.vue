@@ -17,7 +17,7 @@ export default {
   align-items: center;
   height: 50%;
   border-radius: 15px;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
   background-color: pink;
   flex-direction: column;
   /* make some space between the container and the bottom */

@@ -13,7 +13,7 @@ export default {
     props: {
         score: {
             type: String,
-            default: 'Player1: 0 Player2: 0'
+            default: 'Player1: 0' + ' Player2: 0'
         }
     }
 }
@@ -25,7 +25,9 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    align-content: space-between;
     height: 100%;
+    width: 35%;
     background-color: aliceblue;
     padding: 20px;
     margin-bottom: 15px;
