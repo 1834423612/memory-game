@@ -59,5 +59,10 @@ jobs:
         echo "Pushing to webpage branch"
         git push origin webpage --force
 
+        echo "Cleaning up"
+        rm -rf temp-deploy
+        rm -rf dist
+        rm -rf node_modules
+
     - name: Check git status
       run: git status
