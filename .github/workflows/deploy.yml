@@ -32,11 +32,23 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-        echo "Adding dist directory"
-        git add dist -f
-        
+        echo "Creating temporary directory"
+        mkdir temp-deploy
+        cp -r dist/* temp-deploy/
+
+        echo "Switching to webpage branch"
+        git fetch origin
+        git checkout -B webpage origin/webpage
+
+        echo "Copying build files to webpage branch"
+        cp -r temp-deploy/* .
+
         echo "Committing changes"
+        git add .
         git commit -m "Deploy to HTML Web Pages"
-        
-        echo "Pushing to page branch"
-        git push origin `git subtree split --prefix dist vue`:webpage --force
+
+        echo "Pushing to webpage branch"
+        git push origin webpage --force
+
+    - name: Check git status
+      run: git status
