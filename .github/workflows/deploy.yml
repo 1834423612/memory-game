@@ -65,7 +65,15 @@ jobs:
         git push origin webpage --force
 
         echo "Final cleanup"
-        git rm -rf node_modules/ dist/ temp-deploy/
+        if [ -d node_modules ]; then
+          git rm -rf node_modules/
+        fi
+        if [ -d dist ]; then
+          git rm -rf dist/
+        fi
+        if [ -d temp-deploy ]; then
+          git rm -rf temp-deploy/
+        fi
 
     - name: Check git status
       run: git status
