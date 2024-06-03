@@ -32,6 +32,10 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+        echo "Creating temporary directory"
+        mkdir temp-deploy
+        cp -r dist/* temp-deploy/
+
         echo "Fetching all branches"
         git fetch origin
 
@@ -45,16 +49,13 @@ jobs:
         echo "Cleaning old files"
         git rm -rf .
 
-        echo "Cleaning up deployment artifacts"
-        rm -rf temp-deploy
-        rm -rf dist
-        rm -rf node_modules
-
         echo "Copying build files to webpage branch"
         cp -r temp-deploy/* .
 
         echo "Cleaning up unnecessary files before committing"
-        git rm -rf node_modules/ dist/ temp-deploy/
+        rm -rf temp-deploy
+        rm -rf dist
+        rm -rf node_modules
 
         echo "Committing changes"
         git add .
@@ -63,6 +64,8 @@ jobs:
         echo "Pushing to webpage branch"
         git push origin webpage --force
 
+        echo "Final cleanup"
+        git rm -rf node_modules/ dist/ temp-deploy/
 
     - name: Check git status
       run: git status
