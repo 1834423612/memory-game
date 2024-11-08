@@ -22,7 +22,7 @@ jobs:
       run: npm install -g pnpm@9.1.4
 
     - name: Install dependencies
-      run: pnpm install
+      run: pnpm install --no-frozen-lockfile
 
     - name: Build project
       run: pnpm build
@@ -31,7 +31,49 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add dist -f
-        git commit -m "Deploy to HTML Pages"
-        git push origin `git subtree split --prefix dist vue`:webpage --force
 
+        echo "Creating temporary directory"
+        mkdir temp-deploy
+        cp -r dist/* temp-deploy/
+
+        echo "Fetching all branches"
+        git fetch origin
+
+        echo "Checking out webpage branch"
+        if git show-ref --verify --quiet refs/heads/webpage; then
+          git checkout webpage
+        else
+          git checkout --orphan webpage
+        fi
+
+        echo "Cleaning old files"
+        git rm -rf .
+
+        echo "Copying build files to webpage branch"
+        cp -r temp-deploy/* .
+
+        echo "Cleaning up unnecessary files before committing"
+        rm -rf temp-deploy
+        rm -rf dist
+        rm -rf node_modules
+
+        echo "Committing changes"
+        git add .
+        git commit -m "Deploy to HTML Web Pages"
+
+        echo "Pushing to webpage branch"
+        git push origin webpage --force
+
+        echo "Final cleanup"
+        if [ -d node_modules ]; then
+          git rm -rf node_modules/
+        fi
+        if [ -d dist ]; then
+          git rm -rf dist/
+        fi
+        if [ -d temp-deploy ]; then
+          git rm -rf temp-deploy/
+        fi
+
+    - name: Check git status
+      run: git status
