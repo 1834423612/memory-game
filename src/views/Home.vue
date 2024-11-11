@@ -8,7 +8,8 @@
       </h1>
 
       <!-- Return to Home Button (Always visible except during active gameplay) -->
-      <div v-if="!gameStarted || gameOver" class="text-center mt-4">
+      <!-- <div v-if="!gameStarted || gameOver" class="text-center mt-4"> -->
+      <div class="text-center mt-4">
         <button @click="returnToHome"
           class="bg-white text-indigo-600 font-medium py-2 px-4 rounded-lg transition-colors hover:bg-indigo-100 flex items-center justify-center mx-auto">
           <Icon icon="mdi:home" class="mr-2" />
@@ -354,6 +355,7 @@
 import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import { Peer, DataConnection } from 'peerjs'
 import { Icon } from '@iconify/vue'
+import initialCardsData from '../data/cards.json'
 
 interface Card {
   id: number
@@ -376,12 +378,7 @@ const scores = reactive<Scores>({
   player2: 0
 })
 
-const initialCards = [
-  { id: 1, question: 'Things all cultures have', answer: 'Language, religion, values, norms, symbols', isFlipped: false },
-  { id: 2, question: 'What is sociology?', answer: 'The study of human society and social behavior', isFlipped: false },
-  { id: 3, question: 'Who is considered the founder of sociology?', answer: 'Auguste Comte', isFlipped: false },
-  // Add more cards as needed
-]
+const initialCards = initialCardsData as Card[] // Use JSON data as Card array
 
 const cards = ref<Card[]>([...initialCards])
 const currentCard = ref<Card | null>(null)

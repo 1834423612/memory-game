@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "question": "Things all cultures have",
+        "answer": "Language, religion, values, norms, symbols",
+        "isFlipped": false
+    },
+    {
+        "id": 2,
+        "question": "What is sociology?",
+        "answer": "The study of human society and social behavior",
+        "isFlipped": false
+    },
+    {
+        "id": 3,
+        "question": "Who is considered the founder of sociology?",
+        "answer": "Auguste Comte",
+        "isFlipped": false
+    }
+]
