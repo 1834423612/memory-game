@@ -410,10 +410,10 @@ const totalQuestions = computed(() => initialCards.length)
 const remainingQuestions = computed(() => cards.value.length)
 
 const generateRoomCode = () => {
-  const adjectives = ['Red', 'Blue', 'Green', 'Yellow', 'Purple', 'Orange', 'Pink', 'Brown', 'Gray', 'Black']
-  const nouns = ['Cat', 'Dog', 'Bird', 'Fish', 'Lion', 'Tiger', 'Bear', 'Wolf', 'Fox', 'Deer']
+  const colors = ['Red', 'Blue', 'Green', 'Yellow', 'Purple', 'Orange', 'Pink', 'Brown', 'Gray', 'Black']
+  const animals = ['Cat', 'Dog', 'Bird', 'Fish', 'Lion', 'Tiger', 'Bear', 'Wolf', 'Fox', 'Deer']
   const numbers = Math.floor(Math.random() * 100).toString().padStart(2, '0')
-  return `${adjectives[Math.floor(Math.random() * adjectives.length)]}${nouns[Math.floor(Math.random() * nouns.length)]}${numbers}`
+  return `${colors[Math.floor(Math.random() * colors.length)]}${animals[Math.floor(Math.random() * animals.length)]}${numbers}`
 }
 
 // Toggle instructions visibility
