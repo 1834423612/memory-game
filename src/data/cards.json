@@ -1,20 +1,68 @@
 [
     {
         "id": 1,
-        "question": "Things all cultures have",
-        "answer": "Language, religion, values, norms, symbols",
+        "question": "What is another name for the legislative branch?",
+        "answer": "Another name for the legislative branch is congress.",
         "isFlipped": false
-    },
+    }
     {
         "id": 2,
-        "question": "What is sociology?",
-        "answer": "The study of human society and social behavior",
+        "question": "What role does the judicial branch have on our laws?",
+        "answer": "The judicial branch interprets the laws.",
         "isFlipped": false
     },
     {
         "id": 3,
-        "question": "Who is considered the founder of sociology?",
-        "answer": "Auguste Comte",
+        "question": "What is the judicial branch comprised of?",
+        "answer": "The judicial branch comprises of all the courts including the US supreme court.",
         "isFlipped": false
-    }
+    },
+    {
+        "id": 4,
+        "question": "What role does the executive branch have on our laws?",
+        "answer": "The executive branch enforces the laws.",
+        "isFlipped": false
+    },
+    {
+        "id": 5,
+        "question": "What is the executive branch comprised of?",
+        "answer": "The executive branch is comprised of the president and his v.p., cabinet members, and other executive agencies.",
+        "isFlipped": false
+    },
+    {
+        "id": 6,
+        "question": "What kind of law can the executive branch make?",
+        "answer": "The executive branch can make an executive order.",
+        "isFlipped": false
+    },
+    {
+        "id": 7,
+        "question": "What role does the legislative branch have on our laws?",
+        "answer": "The legislative branch makes the laws.",
+        "isFlipped": false
+    },
+    {
+        "id": 8,
+        "question": "What is the legislative branch comprised of?",
+        "answer": "The legislative branch, aka congress, is comprised of the senate and the house of representatives.",
+        "isFlipped": false
+    },
+    {
+        "id": 9,
+        "question": "How can the legislative branch pass a law?",
+        "answer": "A committee from the house of representatives presents the bill the committee was created to investigate and research. The house of representatives must make a majority vote followed by the senate making a majority vote. Finally, representatives and senators form yet another committee to discuss the rule. Then, the president can veto it or the supreme court can rule it unconstitutional. Both the president and supreme court can also not do anything which makes the bill a law.",
+        "isFlipped": false
+    },
+    {
+        "id": 10,
+        "question": "Why are there three branches of government?",
+        "answer": "There are three branches of government to prevent the government from giving itself more power as easily.",
+        "isFlipped": false
+    },
+    {
+        "id": 11,
+        "question": "What is the definition of a law?",
+        "answer": "A law is a government enforced rule recognized as binding by the people.",
+        "isFlipped": false
+    },
 ]
