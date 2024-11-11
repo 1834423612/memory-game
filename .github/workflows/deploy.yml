@@ -1,0 +1,79 @@
+name: Deploy to HTML Pages
+
+on:
+  push:
+    branches:
+      - vue
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.9.0
+
+    - name: Install pnpm
+      run: npm install -g pnpm@9.1.4
+
+    - name: Install dependencies
+      run: pnpm install --no-frozen-lockfile
+
+    - name: Build project
+      run: pnpm build
+
+    - name: Deploy to GitHub Pages
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        echo "Creating temporary directory"
+        mkdir temp-deploy
+        cp -r dist/* temp-deploy/
+
+        echo "Fetching all branches"
+        git fetch origin
+
+        echo "Checking out webpage branch"
+        if git show-ref --verify --quiet refs/heads/webpage; then
+          git checkout webpage
+        else
+          git checkout --orphan webpage
+        fi
+
+        echo "Cleaning old files"
+        git rm -rf .
+
+        echo "Copying build files to webpage branch"
+        cp -r temp-deploy/* .
+
+        echo "Cleaning up unnecessary files before committing"
+        rm -rf temp-deploy
+        rm -rf dist
+        rm -rf node_modules
+
+        echo "Committing changes"
+        git add .
+        git commit -m "Deploy to HTML Web Pages"
+
+        echo "Pushing to webpage branch"
+        git push origin webpage --force
+
+        echo "Final cleanup"
+        if [ -d node_modules ]; then
+          git rm -rf node_modules/
+        fi
+        if [ -d dist ]; then
+          git rm -rf dist/
+        fi
+        if [ -d temp-deploy ]; then
+          git rm -rf temp-deploy/
+        fi
+
+    - name: Check git status
+      run: git status
