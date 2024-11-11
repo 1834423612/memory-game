@@ -15,6 +15,9 @@
           <Icon icon="mdi:home" class="mr-2" />
           Return to Home
         </button>
+        <button onclick="window.location.href='https://docs.google.com/document/d/1tsVzgltAe8_JT2C-mGTsOaxjlqzqpLFMSmIbE4WttJQ/edit?usp=sharing'">
+          Answer Sheet
+        </button>
       </div>
 
       <!-- Quick Start Guide (Always Visible) -->
