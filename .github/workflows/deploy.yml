@@ -3,7 +3,7 @@ name: Deploy to HTML Pages
 on:
   push:
     branches:
-      - vue
+      - master
 
 jobs:
   build:
