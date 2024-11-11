@@ -5,7 +5,16 @@ export default {
     "./src/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      rotate: {
+        '180': '180deg',
+      }
+    },
+  },
+  variants: {
+    extend: {
+      backfaceVisibility: ['hover', 'focus'],
+    },
   },
   plugins: [],
 }
