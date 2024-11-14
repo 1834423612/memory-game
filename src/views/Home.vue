@@ -17,7 +17,7 @@
         </button>
         <button
           class="bg-white text-indigo-600 mt-2 font-medium py-2 px-4 rounded-lg transition-colors hover:bg-indigo-100 flex items-center justify-center mx-auto"
-          onclick="window.location.href='https://docs.google.com/document/d/1tsVzgltAe8_JT2C-mGTsOaxjlqzqpLFMSmIbE4WttJQ/edit?usp=sharing'"
+          onclick="window.open('https://docs.google.com/document/d/1tsVzgltAe8_JT2C-mGTsOaxjlqzqpLFMSmIbE4WttJQ/edit?usp=sharing', '_blank')"
         >
           Answer Sheet
         </button>
