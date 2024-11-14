@@ -718,9 +718,8 @@ const submitAnswer = (isCorrect: boolean) => {
       }
       nextCard()
     } else {
-      if (idkSelected.value || someoneAnsweredIncorrectly.value) {
+      if (idkSelected.value) {
         // If the other player said "I Don't Know", move to next card immediately
-        //also skip the card if the first and second player's answers were wrong 
         nextCard()
       } else {
         someoneAnsweredIncorrectly.value = true
@@ -927,10 +926,7 @@ const checkBothPlayersReady = () => {
 }
 
 const updateGameState = (state: any) => {
-  currentCard.value.id=state.currentCard.id
-  currentCard.value.question=state.currentCard.question
-  currentCard.value.answer=state.currentCard.answer
-  
+  currentCard.value = state.currentCard
   scores.player1 = state.scores.player1
   scores.player2 = state.scores.player2
   waitingForAnswer.value = state.waitingForAnswer
