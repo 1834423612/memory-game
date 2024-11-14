@@ -207,7 +207,7 @@
         <div v-if="currentCard" class="relative perspective">
           <div class="rounded-2xl shadow-lg cursor-pointer transition-transform duration-500 transform-style-3d"
             :class="{ 'rotate-y-180': currentCard.isFlipped, 'bg-white': !currentCard.isFlipped, 'bg-green-100': currentCard.isFlipped }"
-            @click="flipCard" style="height: 300px;">
+            @click="flipCard" style="height: 400px;">
             <div class="absolute inset-0 backface-hidden flex flex-col items-center justify-center p-8">
               <p class="text-3xl font-semibold text-center text-gray-800 mb-4">
                 {{ currentCard.question }}
