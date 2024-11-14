@@ -825,8 +825,15 @@ const joinRoom = () => {
       console.error('PeerJS error:', error)
       isJoining.value = false
       if (error.type === 'peer-unavailable') {
-        joinError.value = 'Room not found. Please check the Room Code or create a new room.'
-      } else {
+        joinError.value = `Room not found. Please check the Room Code or create a new room. (${error})`
+      }
+      if (error.type === 'network') {
+        joinError.value = `Network error. Please check your internet connection. (${error})`
+      }
+      if (error.type === 'socket-error') {
+        joinError.value = `Socket error. Please try again later. (${error})`
+      }
+      else {
         joinError.value = `Failed to join room: ${error}`
       }
     })
