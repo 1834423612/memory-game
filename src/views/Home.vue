@@ -388,13 +388,15 @@ const initialCards = initialCardsData as Card[] // Use JSON data as Card array
 
 const cards = ref<Card[]>([...initialCards])
 const currentCard = ref<Card | null>(null)
+const isAnswering = ref(false)
+const idkSelected = ref(false)
+const currentPlayerCorrect = ref(false)
 const roomCode = ref('')
 const peer = ref<Peer | null>(null)
 const connection = ref<DataConnection | null>(null)
 const isConnected = ref(false)
 const allPlayersJoined = ref(false)
 const waitingForAnswer = ref(false)
-const isAnswering = ref(false)
 const isReady = ref(false)
 const opponentReady = ref(false)
 const countdownStarted = ref(false)
@@ -407,7 +409,6 @@ const joinError = ref('')
 const isCreatingRoom = ref(false)
 const displayRoomCode = ref('')
 const someoneAnsweredIncorrectly = ref(false)
-const idkSelected = ref(false)
 
 const totalQuestions = computed(() => initialCards.length)
 const remainingQuestions = computed(() => cards.value.length)
@@ -644,9 +645,9 @@ const generateRoomCode = () => {
 ]
   const numbers = Math.floor(Math.random() * 100).toString().padStart(2, '0')
   const randColor = colors[Math.floor(Math.random() * colors.length)]
-  const color=randColor.charAt(0).toUpperCase() + randColor.splice(1)
+  const color=randColor.charAt(0).toUpperCase() + randColor.slice(1)
   
-  return color + animals[Math.floor(Math.random() * animals.length)]} + numbers
+  return color + animals[Math.floor(Math.random() * animals.length)] + numbers
 }
 
 // Toggle instructions visibility
@@ -685,9 +686,10 @@ const initializeGame = () => {
 const flipCard = () => {
   if (currentCard.value && (gameMode.value === 'singleplayer' || (gameMode.value === 'multiplayer' && isAnswering.value))) {
     currentCard.value.isFlipped = !currentCard.value.isFlipped
-    if (gameMode.value === 'multiplayer') {
-      sendGameState()
-    }
+    // Removed synchronization with other player
+    // if (gameMode.value === 'multiplayer') {
+    //   sendGameState()
+    // }
   }
 }
 
@@ -704,6 +706,7 @@ const iDontKnow = () => {
     waitingForAnswer.value = true
     isAnswering.value = false
     idkSelected.value = true
+    currentPlayerCorrect.value = false
     sendIDontKnow()
   }
 }
@@ -716,8 +719,10 @@ const submitAnswer = (isCorrect: boolean) => {
       } else {
         scores.player2++
       }
+      currentPlayerCorrect.value = true
       nextCard()
     } else {
+      currentPlayerCorrect.value = false
       if (idkSelected.value) {
         // If the other player said "I Don't Know", move to next card immediately
         nextCard()
@@ -904,20 +909,29 @@ const sendReadyState = () => {
   }
 }
 
+// const handleIDontKnow = () => {
+//   if (currentCard.value) {
+//     if (idkSelected.value) {
+//       // Both players don't know, move to next card
+//       currentCard.value.isFlipped = true
+//       setTimeout(() => {
+//         cards.value.push({ ...currentCard.value!, isFlipped: false })
+//         nextCard()
+//       }, 3000)
+//     } else {
+//       // Wait for the other player's response
+//       waitingForAnswer.value = true
+//       isAnswering.value = true
+//     }
+//   }
+// }
+
 const handleIDontKnow = () => {
   if (currentCard.value) {
-    if (idkSelected.value) {
-      // Both players don't know, move to next card
-      currentCard.value.isFlipped = true
-      setTimeout(() => {
-        cards.value.push({ ...currentCard.value!, isFlipped: false })
-        nextCard()
-      }, 3000)
-    } else {
-      // Wait for the other player's response
-      waitingForAnswer.value = true
-      isAnswering.value = true
-    }
+    // Wait for the current player's response
+    waitingForAnswer.value = true
+    isAnswering.value = true
+    idkSelected.value = true
   }
 }
 
@@ -941,13 +955,14 @@ const updateGameState = (state: any) => {
   gameOver.value = state.gameOver
   someoneAnsweredIncorrectly.value = state.someoneAnsweredIncorrectly
   idkSelected.value = state.idkSelected
+  currentPlayerCorrect.value = state.currentPlayerCorrect
 
   if (state.gameOver) {
     createConfetti()
   }
 
-  if ((someoneAnsweredIncorrectly.value && !isAnswering.value) || (idkSelected.value && !isAnswering.value)) {
-    // Move to the next card if both players answered incorrectly or if IDK was selected and the other player answered incorrectly
+  if (idkSelected.value && !currentPlayerCorrect.value) {
+    // If IDK was selected and the current player answered incorrectly, move to the next card
     nextCard()
   }
 }
